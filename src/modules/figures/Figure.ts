@@ -1,5 +1,5 @@
 import { Colors } from "../Colors";
-import logo from '../../../assets/black-king.png .png'
+import logo from './../../assets/black-king.png .png'
 import { Cell } from "../Cell";
 
 export enum FigureNames {
@@ -29,7 +29,14 @@ export class Figure {
     }
 
     public canMove (target: Cell): boolean {
-        return true
+        if(target.figure?.color === this.color) {
+            return false
+        } 
+        if(target.figure?.name === FigureNames.KING) {
+            return false
+        } else {
+            return true
+        }
     }
 
     moveFigure (target: Cell) {

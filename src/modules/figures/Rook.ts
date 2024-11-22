@@ -2,8 +2,8 @@ import { Cell } from "../Cell";
 import { Colors } from "../Colors";
 import { Figure, FigureNames } from "./Figure";
 
-import blackLogo from '../../../assets/black-rook.png'
-import whiteLogo from '../../../assets/white-rook.png'
+import blackLogo from './../../assets/black-rook.png'
+import whiteLogo from './../../assets/white-rook.png'
 
 export class Rook extends Figure {
     selectLogo: typeof blackLogo
@@ -12,6 +12,17 @@ export class Rook extends Figure {
         this.selectLogo = color === Colors.BLACK ? blackLogo : whiteLogo;
         this.logo = this.selectLogo;
         this.name = FigureNames.ROOK;
+    }
 
+    canMove (target: Cell): boolean {
+        if(!super.canMove(target)) {
+            return false
+        } if(this.cell.isEmptyVertical(target)) {
+            return true
+        } if(this.cell.isEmptyHorizontal(target)) {
+            return true
+        } else {
+            return false
+        }
     }
 }
